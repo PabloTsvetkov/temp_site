@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MonteCo — Build. Develop. Design.</title>
+  <style>
+    /* Reset & variables */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #1f1f1f;
+      --accent: #cba258;
+      --light: #f5f5f5;
+      --transition: 0.6s ease;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--primary);
+      background: var(--light);
+      line-height: 1.6;
+    }
+
+    /* Container */
+    .container {
+      width: 90%; max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('https://source.unsplash.com/1600x900/?architecture') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--light);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero .content {
+      position: relative;
+      max-width: 800px;
+      animation: fadeInDown 1s var(--transition) forwards;
+      opacity: 0;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-align: center;
+    }
+    section p {
+      max-width: 800px;
+      margin: 0.5rem auto;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: var(--light);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="content">
+      <h1>MonteCo — Build. Develop. Design.</h1>
+      <p>Exceptional Construction. Strategic Development. Inspired Design.<br>
+      At MonteCo, we don't just build structures —<br>
+      we create lasting value, curated space, and a lifestyle defined by refinement.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="build">
+      <h2>We Build.</h2>
+      <p>We build with precision, passion, and total control.<br>
+      From private residences to complex multi-unit developments, every MonteCo project meets the highest European quality standards.<br>
+      We deliver on time, transparently and flawlessly — with results that endure and impress.</p>
+    </section>
+
+    <section id="develop">
+      <h2>We Develop.</h2>
+      <p>We turn ideas into intelligent, future-ready solutions.<br>
+      From project planning and budgeting to contractor coordination and compliance, we manage every phase with confidence and clarity.<br>
+      The result: not just a building, but a high-value asset, shaped with long-term vision.</p>
+    </section>
+
+    <section id="design">
+      <h2>We Design.</h2>
+      <p>Design is what transforms a space into a statement.<br>
+      Our interiors and exteriors combine elegance, comfort, and functionality — tailored to reflect your lifestyle and values.<br>
+      Every detail is thoughtfully curated to achieve balance, harmony, and distinction.</p>
+    </section>
+
+    <section id="about">
+      <h2>MonteCo — Your Partner in Precision and Aesthetic Vision</h2>
+      <p>Based in Monaco, we understand what it means to deliver discretion, trust, and uncompromising quality.<br>
+      With MonteCo, you gain a team that handles every detail — from the first concept to final handover — with dedication, clarity, and care.<br>
+      Our strength lies in expertise, adaptability, and obsession with detail.<br>
+      Our mission is simple: To create the exceptional.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MonteCo. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const sections = document.querySelectorAll('section');
+    const observerOptions = { threshold: 0.15 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+</body>
+</html>
